@@ -1,0 +1,99 @@
+https://selenium-python.readthedocs.io/api.html#
+
+1. Import webdriver:
+from selenium import webdriver
+
+2. Start Google Chrome and open some page:
+browser = webdriver.Chrome()
+browser.get("http://suninjuly.github.io/simple_form_find_task.html")
+
+3. Find an element ("find_elements_by_..." to find elements):
+ * find_element_by_id
+ * find_element_by_css_selector
+ * find_element_by_xpath
+ * find_element_by_name
+ * find_element_by_tag_name
+ * find_element_by_class_name
+ * find_element_by_link_text
+ * find_element_by_partial_link_text
+ * find_element (import "from selenium.webdriver.common.by import By")
+  - By.ID
+  - By.CSS_SELECTOR
+  - By.XPATH
+  - By.NAME
+  - By.TAG_NAME
+  - By.CLASS_NAME
+  - By.LINK_TEXT
+  - By.PARTIAL_LINK_TEXT
+
+button = browser.find_element_by_id("submit_button")
+button = browser.find_element(By.ID, "submit_button")
+
+4. Button, checkbox, radiobutton, link click:
+button = browser.find_element_by_css_selector("button.btn")
+button.click()
+
+5. Input value:
+input = browser.find_element_by_tag_name("input")
+input.send_keys("Ivan")
+
+6. Get text of an element:
+x_element = browser.find_element_by_*(selector)
+x = x_element.text
+
+7. Get an attribute of an element:
+human_radio = browser.find_element_by_id("humanRule")
+human_checked = human_radio.get_attribute("checked")
+assert human_checked is not None, "Human radio is not selected by default"
+
+8. Select an item in a list:
+browser.find_element_by_tag_name("select").click()
+browser.find_element_by_css_selector("option:nth-child(2)").click()
+
+9. Select an item in a list with "Select" helper:
+ * select_by_value
+ * select_by_visible_text
+ * select_by_index
+
+from selenium.webdriver.support.ui import Select
+select = Select(browser.find_element_by_tag_name("select"))
+select.select_by_value("1")
+
+10. Execute javascript:
+browser.execute_script("alert('Robots at work');")
+
+11. Scroll an element into view:
+button = browser.find_element_by_tag_name("button")
+browser.execute_script("return arguments[0].scrollIntoView(true);", button)
+
+12. Load a file:
+current_dir = os.path.abspath(os.path.dirname(__file__))
+file_path = os.path.join(current_dir, 'file.txt')
+element.send_keys(file_path)
+
+13. Focus on alert:
+alert = browser.switch_to.alert
+
+14. Get alert text:
+alert_text = alert.text
+
+15. Alert commands:
+ * alert.accept()
+ * alert.dismiss()
+ * alert.send_keys("My answer")
+
+16. Change current tab in browser:
+browser.switch_to.window(window_name)
+
+17. List of tabs iin browser:
+browser.window_handles (e.g. first tab is "first_window = browser.window_handles[0]")
+
+18. Implicit wait:
+browser.implicitly_wait(5) # sec
+
+19. Explicit wait:
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+button = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.ID, "check")))

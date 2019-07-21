@@ -1,0 +1,58 @@
+1. Next parts can be used to find an element of HTML-page:
+ * id
+   example: <img id="bullet ...>
+   css-selector: #bullet, [id="bullet"]
+   xpath: //img[@id="bullet"], //*[@id="bullet"]
+ * tag
+   example: <div ...>
+   css-selector: div
+   xpath: //div
+ * attribute
+   example: <img data-type="animal" ...>
+   css-selector: [data-type="animal"]
+   xpath: //img[@data-type="animal"]
+ * class
+   example: <img class="animal" ...>
+   css-selector: .animal, [class="animal"]
+   xpath://img[@class="animal"]
+ * text
+   example: <p>Lenin cat</p>
+   xpath://p[text()="Lenin cat"], //p[contains(text(), "cat")]
+
+2. To find an element in browser:
+ * Open "Browser console" ("Inspect"/"Исследовать элемент")
+ * Press Ctrl+F
+ * Use string, selector or XPath
+
+3. Examples:
+
+<div id="posts" class="post-list">
+  <div id="post1" class="item">
+    <div class="title">Как я провел лето</div>
+    <img src="./images/summer.png">
+  </div>
+  <div id="post2" class="item">
+    <div class="title second">Ходили купаться</div>
+    <img src="./images/bad_dog.jpg">
+  </div>
+  <div id="post3" class="item">
+    <div class="title">С друзьями</div>
+    <img src="./images/friends.jpg">
+  </div>
+</div>
+
+ * Several criterias
+  - css-selector (without spaces): [class="title"][class="second"], div#post1
+  - xpath (without spaces, and, or, not): //div[@class="item"][@id="post1"], //div[@class="item" and @id="post1"]
+
+ * Descendant
+  - css-selector (with spaces): "#posts .title"
+  - xpath: //div[@id="posts"]//div[contains(@class, "title")]
+
+ * Child
+  - css-selector (">"): "#post2 > div.title", "#post2>div.title"
+  - xpath: //div[@id="post2"]/div
+
+ * Nth-child
+  - css-selector ("nth-child"): "#posts > .item:nth-child(2) > .title"
+  - xpath: //div[@id="posts"]/div[2]/div[contains(@class, "title")]

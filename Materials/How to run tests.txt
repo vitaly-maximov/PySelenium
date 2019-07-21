@@ -1,0 +1,22 @@
+1. Install python: 
+https://www.python.org/downloads/windows/
+
+2. Create python virtual environment:
+python -m venv selenium_env
+
+3. Activate virtual environment:
+selenium_env\Scripts\activate.bat
+
+4. Deactivate virtual environment:
+deactivate
+
+5. Install python selenium library (inside virtual environment):
+pip install selenium==3.13.0
+
+6. Make sure it's installed:
+pip list
+
+7. Download Google Chrome driver (and modify PATH variable):
+https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+8. Run tests
