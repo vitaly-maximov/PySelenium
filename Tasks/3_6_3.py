@@ -7,7 +7,7 @@ import time
 def browser():
     browser = webdriver.Chrome()
     yield browser
-    browser.close()
+    browser.quit()
 
 @pytest.mark.parametrize("link", [
     "https://stepik.org/lesson/236895/step/1",
