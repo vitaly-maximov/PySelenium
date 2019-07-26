@@ -20,3 +20,10 @@ pip list
 https://sites.google.com/a/chromium.org/chromedriver/downloads
 
 8. Run tests
+
+9. PyTest:
+pip install pytest==3.10.1
+
+10. Save/restore environment:
+pip freeze > requirements.txt
+pip install -r requirements.txt
